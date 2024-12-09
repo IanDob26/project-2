@@ -1,6 +1,6 @@
 import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
-
+import "@haxtheweb/rpg-character/rpg-character.js";
 export class project2 extends DDDSuper(LitElement) {
 
   static get tag() {
@@ -10,6 +10,17 @@ export class project2 extends DDDSuper(LitElement) {
   constructor() {
     super();
     this.title = "";
+    this.characterSettings = {
+      seed: 1121111111,
+    accessory: 1,
+    base:1,
+    face:1,
+    faceitem: 3,
+    hair: 1,
+    pants:4,
+    shirtskin: 4,
+    hatColor: 1,
+    }
   }
 
   static get properties() {
@@ -43,6 +54,17 @@ export class project2 extends DDDSuper(LitElement) {
     return html`
 <div class="wrapper">
   <div>${this.title}</div>
+  <rpg-character
+  seed="${this.characterSettings.seed}"
+    accessory="${this.characterSettings.accessory}"
+    base="${this.characterSettings.base}"
+    face="${this.characterSettings.face}"
+    faceitem="${this.characterSettings.faceitem}"
+    hair="${this.characterSettings.hair}"
+    pants="${this.characterSettings.pants}"
+    shirtskin="${this.characterSettings.shirtskin}"
+    hatColor="${this.characterSettings.hatColor}">
+  </rpg-character> 
   <slot></slot>
 </div>`;
   }

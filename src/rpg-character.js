@@ -91,7 +91,7 @@ class RpgCharacter extends SimpleColors {
       ...super.properties,
       literalseed: { type: Boolean },
       accessories: { type: Number },
-      height: { type: Number },
+      height: { type: Number},
       width: { type: Number },
       base: { type: Number },
       face: { type: Number },
