@@ -17,17 +17,29 @@ export class project2 extends DDDSuper(LitElement) {
     accessory: 1,
     base:1,
     face:1,
-    faceitem: 3,
+    faceitem: 1,
     hair: 1,
-    pants:4,
-    shirtskin: 4,
-    hatColor: 5,
+    pants:1,
+    shirtskin: 1,
+    hatColor: 1,
     }
   }
 
   static get properties() {
     return {
       title: { type: String },
+      accessories: { type: String, reflect: true }, //syncs property and attribute
+      base: { type: String, reflect: true },
+      leg: { type: String, reflect: true },
+      face: { type: String, reflect: true },
+      faceItem: { type: String, reflect: true },
+      hair: { type: String, reflect: true },
+      pants: { type: String, reflect: true },
+      shirt: { type: String, reflect: true },
+      skin: { type: String, reflect: true },
+      hatColor: { type: String, reflect: true },
+      hat: { type: String, reflect: true },
+     
     };
   }
 
@@ -104,7 +116,6 @@ export class project2 extends DDDSuper(LitElement) {
       <input id="input" placeholder="shirt: 0 -9" />
       <input id="input" placeholder="skin: 0-9" />
       <input id="input" placeholder="hatcolor: 0-9" />
-
       <div>
       <input type="checkbox"  id = fire name ="fire"/>
       <label>On Fire?</label>
