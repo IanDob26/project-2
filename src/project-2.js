@@ -1,29 +1,36 @@
 import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import "@haxtheweb/rpg-character/rpg-character.js";
+
 import "wired-elements";
 
+
 export class project2 extends DDDSuper(LitElement) {
+
 
   static get tag() {
     return "project-2";
   }
 
+
   constructor() {
     super();
     this.title = "";
     this.characterSettings = {
-      seed: 1121111111,
-    accessory: 1,
-    base:1,
-    face:1,
-    faceitem: 1,
-    hair: 1,
-    pants:1,
-    shirtskin: 1,
-    hatColor: 1,
-    }
+    seed: "11211522",
+    accessory: 0,
+    base:0,
+    face:0,
+    faceitem: 0,
+    hair: 0,
+    pants:0,
+    shirtskin: 0,
+    hatColor: 0,
+    fire: false,
+    };
+    this.updateSeed();
   }
+
 
   static get properties() {
     return {
@@ -39,9 +46,11 @@ export class project2 extends DDDSuper(LitElement) {
       skin: { type: String, reflect: true },
       hatColor: { type: String, reflect: true },
       hat: { type: String, reflect: true },
-     
+      
+      characterSettings: { type: Object },
     };
   }
+
 
   async  copyToClipboard(text) {
     try {
@@ -61,7 +70,7 @@ export class project2 extends DDDSuper(LitElement) {
         font-family: var(--ddd-font-navigation);
         font-size: var(--project-2-font-size, var(--ddd-font-size-s));
       }
-      
+     
       .container {
           display: flex;
           flex-wrap: wrap;
@@ -88,7 +97,8 @@ export class project2 extends DDDSuper(LitElement) {
     `];
   }
 
-  
+
+ 
   render() {
     return html`
 <div class="container">
@@ -104,9 +114,10 @@ export class project2 extends DDDSuper(LitElement) {
     pants="${this.characterSettings.pants}"
     shirtskin="${this.characterSettings.shirtskin}"
     hatColor="${this.characterSettings.hatColor}">
-    
-  </rpg-character> 
+    ?fire="${this.characterSettings.fire}"
+  </rpg-character>
   <div id =controls>
+ 
       <input id="input" placeholder="Accessories: 0 - 9" />
       <input id="input" placeholder="base: 1 or 5 (Male 0-4, Female 5-9)" />
       <input id="input" placeholder="face: 0 -5" />
@@ -116,6 +127,9 @@ export class project2 extends DDDSuper(LitElement) {
       <input id="input" placeholder="shirt: 0 -9" />
       <input id="input" placeholder="skin: 0-9" />
       <input id="input" placeholder="hatcolor: 0-9" />
+      
+      
+         
       <div>
       <input type="checkbox"  id = fire name ="fire"/>
       <label>On Fire?</label>
@@ -125,11 +139,32 @@ export class project2 extends DDDSuper(LitElement) {
       <label>Walking?</label>
       </div>
 
+
  <button  @click="${this.clipboardcopy}">Share Link</button>
   </div>
 </div>`;
   }
 
+  updateSeed() {
+    const seed = this.characterSettings.seed;
+    const paddedSeed = seed.padStart(8, "0").slice(0, 8);
+    const values = paddedSeed.split("").map((v) => parseInt(v, 10));
+  
+    [
+      this.characterSettings.base,
+      this.characterSettings.face,
+      this.characterSettings.faceitem,
+      this.characterSettings.hair,
+      this.characterSettings.pants,
+      this.characterSettings.shirt,
+      this.characterSettings.skin,
+      this.characterSettings.hatColor,
+    ] = values;
+  
+    this.requestUpdate(); // Ensure UI updates after applying settings
+  }
+
+  
   clipboardcopy(){
     const baseUrl = window.location.href.split("?")[0];
     const params = new URLSearchParams({ seed: this.characterSettings.seed }).toString();
@@ -147,4 +182,6 @@ export class project2 extends DDDSuper(LitElement) {
   }
 }
 
+
 globalThis.customElements.define(project2.tag, project2);
+
