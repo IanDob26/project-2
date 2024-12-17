@@ -21,7 +21,7 @@ export class project2 extends DDDSuper(LitElement) {
     accessory: 0,
     base:0,
     face:0,
-    faceitem: 0,
+    faceitem: 1,
     hair: 0,
     pants:0,
     shirtskin: 0,
